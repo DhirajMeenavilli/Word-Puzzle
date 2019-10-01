@@ -9,7 +9,7 @@ filename = 'instructions.txt'
 is_win = False
 num_guesses = 4
 words = ['kiwi','bannana','feet','nine']
-answear = words[random.randrange(1)]
+answear = words[random.randrange(4)]
 puzzle = []
 ########### --------------- Functions ---------------------- ###############
 def display_instructions(filename):
@@ -22,7 +22,7 @@ def display_puzzle_string(puzzle):
 
 def get_guess(num_guesses):
 	guess = input("What do you think the letters in this word are ")
-	print("Guesses:",num_guesses)
+	print("Guesses:",num_guesses-1)
 	return guess
 
 
@@ -59,14 +59,20 @@ def play_game(puzzle,answear,num_guesses):
 		return True
 	else:
 		return False
+
+def main(puzzle,answear,num_guesses):
+	display_puzzle_string(puzzle)
+	is_win = play_game(puzzle,answear,num_guesses)
+	return is_win
+
 ########### --------------- Program Starts Here ------------ ###############
 for i in range(len(answear)):
 	puzzle.append("_")
 
 display_instructions(filename)
+
 while num_guesses > 0 and is_win == False:
-	is_win = play_game(puzzle,answear,num_guesses)
-	display_puzzle_string(puzzle)
+	is_win = main(puzzle,answear,num_guesses)
 	num_guesses = num_guesses - 1
 
 display_results(is_win,answear)

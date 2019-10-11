@@ -75,5 +75,7 @@ while num_guesses > 0 and is_win == False:
 	is_win,update = main(puzzle,answear,num_guesses)
 	if update == 0:
 		num_guesses = num_guesses - 1
+	if update == 1:
+		num_guesses += 1
 
 display_results(is_win,answear)
